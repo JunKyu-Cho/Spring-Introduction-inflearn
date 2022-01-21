@@ -1,14 +1,21 @@
 package hello.hellospring.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+
+// oracel
+@SequenceGenerator(
+    name = "MEM_SEQ_GER",
+    sequenceName = "MEM_SEQ",
+    initialValue = 1,
+    allocationSize = 1
+)
+
 public class Member {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)   // h2
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEM_SEQ_GER")  // oracle
     private Long id;
     private String name;
 
